@@ -1,8 +1,8 @@
 print("‘Hello Mars")
 try:
-    with open("/Users/namnine9/major_dev/1/mission_computer_main.log", "r") as read_f:
+    with open("./mission_computer_main.log", "r") as read_f:
         read_lines = read_f.readlines()
-    with open("/Users/namnine9/major_dev/1/log_analysis.md", "w", encoding="utf-8") as write_f:
+    with open("log_analysis.md", "w", encoding="utf-8") as write_f:
         for line in read_lines:
             line = line.strip()
             print(line)
