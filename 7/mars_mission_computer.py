@@ -14,7 +14,7 @@ class MissionComputer:
             "mars_base_internal_co2": 0.0,
             "mars_base_internal_oxygen": 0
         }
-        self.interval = 300.0
+        self.interval = 10.0
         
     def get_sensor_data(self):
         last_time = time.monotonic()
@@ -68,7 +68,6 @@ class MissionComputer:
         for v in self.values_storage:
             print(f'{v} : {self.values_storage[v] / self.count}')
         self.count = 0
-        self.values_storage = dict.fromkeys(self.values_storage, 0)
         
 def main():
     RunComputer = MissionComputer()
