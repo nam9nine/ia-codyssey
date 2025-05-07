@@ -14,7 +14,7 @@ class MissionComputer:
             "mars_base_internal_co2": 0.0,
             "mars_base_internal_oxygen": 0
         }
-        self.interval = 10.0
+        self.interval = 300.0
         
     def get_sensor_data(self):
         last_time = time.monotonic()
