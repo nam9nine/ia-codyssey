@@ -3,7 +3,7 @@ try:
 
        list_l = f.readlines()
        list_l = sorted(list_l, key = lambda x : x.split(",")[4], reverse=True)
-
+        
        list_e = []
        list_e.append(list_l[0])
        for li in list_l[1:]:
