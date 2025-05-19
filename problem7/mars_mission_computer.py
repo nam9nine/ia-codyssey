@@ -1,4 +1,4 @@
-from sixsix.mars_mission_computer import DummySensor
+from problem6.mars_mission_computer import DummySensor
 import time
 
 class MissionComputer:

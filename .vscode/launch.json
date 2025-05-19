@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "Run problem8",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/problem8/mars_mission_computer.py",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
+} 
