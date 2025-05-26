@@ -3,7 +3,10 @@ import time
 
 class MissionComputer:
     def __init__(self):
-        self.env_values = {}
+        # 환경 정보 저장용 딕셔너리 분리
+        self.info_values = {}
+        self.load_values = {}
+        self.sensor_values = {}
         self.ds = DummySensor()
         self.count = 0
         self.values_storage = {
@@ -24,20 +27,21 @@ class MissionComputer:
 
                 self.ds.set_env()
                 data = self.ds.get_env()
-
-                self.env_values['mars_base_internal_temperature'] = data['mars_base_internal_temperature']
-                self.env_values['mars_base_external_temperature'] = data['mars_base_external_temperature']
-                self.env_values['mars_base_internal_humidity'] = data['mars_base_internal_humidity']
-                self.env_values['mars_base_external_illuminance'] = data['mars_base_external_illuminance']
-                self.env_values['mars_base_internal_co2'] = data['mars_base_internal_co2']
-                self.env_values['mars_base_internal_oxygen'] = data['mars_base_internal_oxygen']
-
-                # json형식으로 출력
-                self.print_json()
+                # 센서 정보 저장
+                self.sensor_values = {
+                    'mars_base_internal_temperature': data['mars_base_internal_temperature'],
+                    'mars_base_external_temperature': data['mars_base_external_temperature'],
+                    'mars_base_internal_humidity': data['mars_base_internal_humidity'],
+                    'mars_base_external_illuminance': data['mars_base_external_illuminance'],
+                    'mars_base_internal_co2': data['mars_base_internal_co2'],
+                    'mars_base_internal_oxygen': data['mars_base_internal_oxygen']
+                }
+                # json 형식으로 출력
+                self.print_json(self.sensor_values)
                 
                 # 환경 값 수집
-                for v in self.env_values:
-                    self.values_storage[v] += self.env_values[v]
+                for v in self.sensor_values:
+                    self.values_storage[v] += self.sensor_values[v]
 
                 self.count += 1
 
@@ -56,9 +60,10 @@ class MissionComputer:
                 print("\nSystem stopped…")
                 break;
             
-    def print_json(self):
+    def print_json(self, values):
+        """주어진 딕셔너리를 JSON 형태로 출력합니다."""
         lines = []
-        for k, v in self.env_values.items():
+        for k, v in values.items():
             lines.append(f'\t"{k}": "{v}"')
         print("{")
         print(",\n".join(lines))
